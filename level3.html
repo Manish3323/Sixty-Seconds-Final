@@ -1,0 +1,598 @@
+<html>
+ <head>
+    <meta charset="UTF-8" />
+    <title>Sixty Seconds</title>
+     <script src="assets/js/player.js"> </script>
+  </head>
+
+ <body>
+
+ <canvas id="canvas" width="1250" height=" 750">
+<script type="text/javascript">
+ var buster = new Sprite("assets/img/Buster0.png");
+var flag = 0;
+var ctx = document.getElementById('canvas').getContext('2d');
+var dx = 6;
+var dy = 6;
+var xq= 60;
+var vault =new Array();
+var c = 0;        //for timer
+var t;            //for timer
+var timer_is_on = 0;
+var section =null;
+var x =150;
+var y = 150;
+var bBoxRight;
+var bBoxLeft;
+var bBoxBottom;
+var bBoxTop;
+var aBoxRight;
+var aBoxLeft;
+var aBoxBottom;
+var aBoxTop;
+var c;
+var line1;
+var line2;
+var oldx;
+var oldy;
+var wallx;
+var wally;
+var newx;
+var newy;
+var bw=39;                    //Half of buster's height and width
+var bh=39;
+
+
+
+var have =new Array();
+
+var count;  var l=490; var ini =0;    var collided=0;    var busterini=0;
+var objects = new Array();
+var resources =new Array();
+var resource_count=0;
+var rx =new Array();
+var ry =new Array();
+
+var oxy =new Image();    var wat=new Image();    var fue=new Image();    var foo=new Image();
+oxy.src ="assets/img/oxygen.png";    wat.src ="assets/img/water.png"; //Issue: Check extensions. Add all resources
+fue.src="assets/img/fuel.jpg";    foo.src="assets/img/foo.jpg";
+
+for(var i=0;i<8;i++)
+        {resources[i]= wat ;
+        resources[i].id='wat';
+          i++;
+         resources[i] = wat;
+         resources[i].id='wat';
+        }
+for(var i=8;i<=10;i++)
+{resources[i]=wat;
+resources[i].id="wat";}
+resources[11]=wat;
+resources[11].id="wat";
+
+var rx =new Array(); //array of x coordinates of resources
+        rx.push(260);rx.push(220);rx.push(20);rx.push(90);rx.push(140);rx.push(280);rx.push(20);rx.push(90);rx.push(140);rx.push(280);
+        var ry =new Array();
+        ry.push(100);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);
+        var have =new Array();    //Created this
+        resource_count=resources.length;
+
+
+
+
+objects.push({x:0,y:0,s:1});
+objects.push({x:16,y:396,s:1});
+//left
+objects.push({x:0,y:0,s:1});
+objects.push({x:242,y:12,s:1});//up error
+
+objects.push({x:242,y:0,s:1});//err
+objects.push({x:258,y:152,s:1});//sect1 vertical
+
+objects.push({x:240,y:152,s:1});
+objects.push({x:260,y:396,s:1});//sect2 left
+
+objects.push({x:188,y:152,s:1});
+objects.push({x:210,y:398,s:1});//sect1 staircase
+
+objects.push({x:209,y:140,s:1});
+objects.push({x:242,y:164,s:1});
+
+objects.push({x:159,y:388,s:1});
+objects.push({x:258,y:410,s:1});
+
+objects.push({x:260,y:398,s:1});
+objects.push({x:292,y:420,s:1});//err
+
+objects.push({x:275,y:382,s:1});//addedone
+objects.push({x:292,y:395,s:1});
+
+objects.push({x:292,y:395,s:1});
+objects.push({x:309,y:409,s:1});
+
+objects.push({x:18,y:395,s:1});
+objects.push({x:55,y:410,s:1});
+
+objects.push({x:53,y:385,s:1});
+objects.push({x:94,y:408,s:1});
+
+objects.push({x:96,y:395,s:1});
+objects.push({x:112,y:408,s:1});
+
+objects.push({x:70,y:202,s:1,v: 1});//vault
+objects.push({x:142,y:325,s:1,v:1});
+
+objects.push({x:263,y:12,s:1});//bed
+objects.push({x:377,y:111,s:1});
+
+objects.push({x:260,y:149,s:1});
+objects.push({x:408,y:163,s:1});
+
+objects.push({x:368,y:140,s:1});//major err
+objects.push({x:390,y:150,s:1});
+
+objects.push({x:375,y:0,s:1});
+objects.push({x:504,y:13,s:1});
+
+objects.push({x:505,y:12,s:1});
+objects.push({x:472,y:150,s:1});
+
+objects.push({x:521,y:162,s:1});
+objects.push({x:524,y:150,s:1});
+
+objects.push({x:612,y:164,s:1});
+objects.push({x:540,y:162,s:1});
+
+objects.push({x:553,y:171,s:1});
+objects.push({x:522,y:12,s:1});
+
+objects.push({x:610,y:91,s:1});//fuck how cud i let this happen
+objects.push({x:374,y:396,s:1});
+
+objects.push({x:602,y:410,s:1});
+objects.push({x:610,y:422,s:1});
+
+
+objects.push({x:390,y:410,s:1});
+objects.push({x:472,y:544,s:1});
+
+objects.push({x:373,y:470,s:1});
+objects.push({x:390,y:489,s:1});
+
+objects.push({x:0,y:410,s:1});
+objects.push({x:18,y:690,s:1});
+
+objects.push({x:18,y:565,s:1});
+objects.push({x:30,y:578,s:1});
+
+objects.push({x:36,y:490,s:1});//sofaset
+objects.push({x:107,y:611,s:1});
+
+objects.push({x:112,y:512,s:1});//sofa
+objects.push({x:150,y:592,s:1});
+
+objects.push({x:158,y:498,s:1});//sofa
+objects.push({x:238,y:600,s:1});
+
+objects.push({x:18,y:686,s:1});
+objects.push({x:390,y:698,s:1});
+
+objects.push({x:45,y:670,s:1});
+objects.push({x:74,y:686,s:1});
+
+objects.push({x:389,y:641,s:1});
+objects.push({x:411,y:699,s:1});//pura miss hua tha
+
+objects.push({x:389,y:641,s:1});
+objects.push({x:638,y:655,s:1});
+
+objects.push({x:585,y:308,s:1});//dinnerset sect1
+objects.push({x:612,y:351,s:1});
+
+
+//sect2
+objects.push({x:613,y:0,s:2});
+objects.push({x:1196,y:13,s:2});
+
+objects.push({x:613,y:12,s:2});//pc
+objects.push({x:695,y:92,s:2});
+
+objects.push({x:804,y:11,s:2});//sofa
+objects.push({x:947,y:61,s:2});
+
+objects.push({x:1020,y:40,s:2});//bed
+objects.push({x:1163,y:132,s:2});
+
+objects.push({x:613,y:140,s:2});
+objects.push({x:634,y:151,s:2});
+objects.push({x:612,y:153,s:2});
+objects.push({x:653,y:163,s:2});
+
+objects.push({x:719,y:152,s:2});
+objects.push({x:783,y:164,s:2});
+
+objects.push({x:767,y:13,s:2});
+objects.push({x:784,y:164,s:2});
+
+objects.push({x:783,y:141,s:2});
+objects.push({x:793,y:151,s:2});
+
+objects.push({x:964,y:13,s:2});
+objects.push({x:980,y:249,s:2});
+
+objects.push({x:980,y:213,s:2});
+objects.push({x:995,y:238,s:2});
+
+objects.push({x:1182,y:13,s:2});
+objects.push({x:1195,y:698,s:2});
+
+
+objects.push({x:1168,y:288,s:2});
+objects.push({x:1182,y:298,s:2});
+
+objects.push({x:965,y:300,s:2});
+objects.push({x:984,y:397,s:2});
+
+objects.push({x:979,y:349,s:2});
+objects.push({x:1046,y:359,s:2});
+
+objects.push({x:1030,y:325,s:2});
+objects.push({x:1182,y:337,s:2});
+
+objects.push({x:1166,y:363,s:2});
+objects.push({x:1182,y:373,s:2});
+
+objects.push({x:611,y:312,s:2});//dinnersetsect2
+objects.push({x:627,y:349,s:2});
+
+objects.push({x:630,y:296,s:2});//table
+objects.push({x:799,y:364,s:2});
+
+objects.push({x:651,y:266,s:2});
+objects.push({x:769,y:293,s:2});
+
+objects.push({x:651,y:364,s:2});
+objects.push({x:770,y:397,s:2});
+
+objects.push({x:798,y:308,s:2});
+objects.push({x:828,y:346,s:2});
+
+objects.push({x:613,y:398,s:2});
+objects.push({x:865,y:411,s:2});
+
+objects.push({x:849,y:405,s:2});
+objects.push({x:866,y:556,s:2});
+
+objects.push({x:613,y:409,s:2});
+objects.push({x:619,y:421,s:2});
+
+objects.push({x:637,y:410,s:2});
+objects.push({x:649,y:699,s:2});
+
+objects.push({x:866,y:421,s:2});
+objects.push({x:881,y:434,s:2});
+
+objects.push({x:833,y:501,s:2});
+objects.push({x:850,y:533,s:2});
+
+objects.push({x:865,y:544,s:2});
+objects.push({x:882,y:556,s:2});
+
+objects.push({x:651,y:581,s:2});//basin
+objects.push({x:730,y:688,s:2});
+
+objects.push({x:793,y:617,s:2});//gas
+objects.push({x:967,y:689,s:2});
+
+objects.push({x:636,y:687,s:2});
+objects.push({x:1195,y:699,s:2});
+
+objects.push({x:964,y:435,s:2});
+objects.push({x:981,y:689,s:2});
+
+objects.push({x:930,y:544,s:2});
+objects.push({x:964,y:558,s:2});
+
+objects.push({x:982,y:457,s:2});
+objects.push({x:992,y:485,s:2});
+
+objects.push({x:1016,y:566,s:2});//bed
+objects.push({x:1161,y:659,s:2});
+
+objects.push({x:571,y:642,s:2});
+objects.push({x:648,y:656,s:2});
+
+objects.push({x:1031,y:322,s:2});
+objects.push({x:1048,y:360,s:2});
+
+ 
+
+function inVault() {    //Cupboard in room 1, Section 1
+if (x>74 && x<151)
+{
+if(y>209 && y<323 )
+{return 1;}
+}
+else return 0;
+}
+
+function getsection(x,y){   //Returns Section number
+if (x <=612 )
+     section =1;
+else  if (x > 612  )
+    section =2;
+return section;
+}
+
+function detect(){
+function collision( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom, bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom) { if(bBoxLeft<aBoxRight && bBoxRight > aBoxRight)dir=1;
+                if(bBoxTop<aBoxBottom && bBoxBottom > aBoxBottom)dir=2;
+                if(bBoxRight>aBoxLeft && bBoxLeft < aBoxLeft)dir=3;
+                if(bBoxBottom > aBoxTop && bBoxBottom >aBoxTop)dir=4;
+   if( bBoxRight > aBoxLeft && bBoxBottom > aBoxTop && aBoxRight > bBoxLeft && aBoxBottom > bBoxTop)
+            {  return 1; }
+            
+} 
+ for(var i=0;i<objects.length;i++)
+ {
+ aBoxLeft=objects[i].x;
+ aBoxTop=(objects[i].y);
+i++;
+ aBoxRight=(objects[i].x);
+ aBoxBottom=(objects[i].y);
+
+ bBoxLeft=x;
+ bBoxRight=x+bw+5;
+ bBoxTop=y;
+ bBoxBottom=y+bh+5;
+var col= collision( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
+                           bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom);
+                           if (col==1)
+                           { return 1;   }
+}
+}
+
+
+//Resource collision detection piece of stupid fuckin code starts here
+            for(var i=0;i<rx.length;i++)
+            {
+            aBoxLeft=x-12;
+            aBoxRight=x+12;
+            aBoxTop=y-12;
+            aBoxBottom=y+12;
+
+            bBoxLeft=rx[i]-15;
+            bBoxRight=rx[i]+15;
+            bBoxTop=ry[i]-15;
+            bBoxBottom=ry[i]+15;
+           
+            rezintersect( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
+                           bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom);
+            if(collided)
+            {
+            remove(i);
+            collided=false;
+            }
+            }
+            function remove(i){
+            if (have.length==0)   //if Player does not have resource then only he will grab it 
+            {
+            have.push(resources[i].id);  
+            resources.splice(i,1);
+            rx.splice(i,1);
+            ry.splice(i,1);
+            resource_count --;
+            }
+            }
+
+
+          
+            function rezintersect( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
+                                    bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom) {
+
+            if( bBoxRight >= aBoxLeft && bBoxBottom >= aBoxTop && aBoxRight >= bBoxLeft && aBoxBottom >= bBoxTop)
+            collided = true;
+            }
+
+ c=detect();
+ if(dir==1){
+ oldx=(bBoxRight-bBoxLeft)/2;
+ oldy=(bBoxBottom-bBoxTop)/2;
+ wally=oldy;
+ wallx=(aBoxRight-aBoxLeft)/2;
+ line1=((wallx-oldx)*(wallx-oldx))+((wally-oldy)*(wally-oldy));
+}
+ line2;
+ 
+function keyInput(evt) {  
+
+ switch(evt.keyCode) {
+
+ case 37:{  if (c==1) 
+                { newx=(bBoxRight-bBoxLeft)/2;
+                  newy=oldy;
+                  line2=((wallx-newx)*(wallx-newx))+((wally-newy)*(wally-newy));
+
+
+                }
+
+            else{ x-=dx;  
+              buster.drawAnimated(x, y, [13,14,15,16,17,18],ctx);
+              c=0;
+                        }
+       }break;
+ 
+ case 38:  { if (c==1){ newx=x;newy=y-dy;
+                  line2=newx*newx+newy*newy;
+                  if(line1<line2)
+                    {y-=dy;
+                    }
+                  else y+=22;
+ 
+
+
+
+
+buster.drawAnimated(x, y,[67,68,69,71],ctx);
+  break;}else{ y-=dy;buster.drawAnimated(x, y, [67,68,69,71],ctx);c=0;}}break;
+ 
+ case 39:{ if (c==1){
+newx=x+dx;newy=y;
+                  line2=newx*newx+newy*newy;
+                  if(line1<line2)
+                    {x+=dx;
+                    }
+                  else x-=22;
+buster.drawAnimated(x, y,[7,8,9,10,11,12],ctx);
+
+  break;}else {
+                    buster.drawAnimated(x, y, [7,8,9,10,11,12],ctx);c=0;}}break;
+ 
+ case 40: { if (c==1){
+newx=x;newy=y-dy;
+                  line2=newx*newx+newy*newy;
+                  if(line1<line2)
+                    {y+=dy;
+                    }
+                  else y-=22;
+buster.drawAnimated(x, y,[67,68,69,71],ctx);
+
+  break;} else {y+=dy;
+                  buster.drawAnimated(x, y, [79,80,81,82,83],ctx);c=0;}}break;
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+if (ini==0)                                            //Start Timer on first move by player
+{//document.getElementById("clock").value = 0;
+startCount();}
+ini=1;
+
+for(var i=0;i<resources.length;i++)                         // Resource Intersection Part 1
+{
+aBoxLeft=x-8;
+aBoxRight=x+8;
+aBoxTop=y-8;
+aBoxBottom=y+5;
+
+bBoxLeft=rx[i]-15;
+bBoxRight=rx[i]+25;
+bBoxTop=ry[i]-5;
+bBoxBottom=ry[i]+28;
+
+intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom,
+                           bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom);
+if(collided)
+{
+   remove(i);
+   collided=false;
+}
+}                                                        //End for loop
+
+function intersects( aBoxLeft,  aBoxRight,  aBoxTop,  aBoxBottom, bBoxLeft,  bBoxRight,  bBoxTop,  bBoxBottom) {
+   if( bBoxRight >= aBoxLeft && bBoxBottom >= aBoxTop && aBoxRight >= bBoxLeft && aBoxBottom >= bBoxTop)
+            collided = true;
+}                                                         //End Intersects
+
+function remove(i){
+     if (have.length==1)                                //Player already has resource
+      return 0;
+      have.push(resources[i].id); 
+      resources.splice(i,1);
+            rx.splice(i,1);
+            ry.splice(i,1);
+            resource_count --;
+} //End Remove
+ 
+            
+ 
+} //End keyInput
+
+
+
+
+/*
+38: Up
+40: Down
+37: Left
+39: Right
+*/
+
+function timedCount() {
+    //document.getElementById("txt").value = c;
+    c = c + 1;
+    t = setTimeout(function(){ timedCount() }, 1000);
+}
+
+function startCount() {
+    if (!timer_is_on  ) {
+        timer_is_on = 1;
+        timedCount();
+       
+    }
+}
+
+function stopCount() {
+    clearTimeout(t);
+    timer_is_on = 0;
+}
+
+function init() {
+         
+        
+          function player(x, y ) {
+
+            var floor =new Image();
+        floor.src="assets/img/floorpanel.jpg";
+       // ctx.drawImage(floor,0,0,1200,700);
+             buster.drawAnimated(x, y, [4],ctx);
+             }
+
+            
+          function draw() {
+            //ctx.clearRect(0,0,1200,700);
+
+            if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
+            {
+            if (have[0]=='water')
+            {ctx.drawImage(water,l,350,15,15);
+            l+=20;
+            have.splice(water,1);}         //Remove from have array
+              if (have[0]=='oxy')
+            {ctx.drawImage(oxy,l,350,15,15);
+            l+=20;
+            have.splice(oxy,1);}
+            ctx.clearRect(405,350,25,75);
+            }
+           
+        
+              for (var i =0 ;i< resource_count;i++)
+              { 
+            ctx.drawImage(resources[i],rx[i],ry[i],30,30);
+          }
+
+            if (inVault() && resource_count==0)
+            {//document.getElementById("txt").value = "Your score:"+c;
+            stopCount();}
+           requestAnimationFrame(draw);
+          }
+
+          draw();
+          //document.getElementById("txt").value = 0;
+
+         player (x,y);
+
+     
+     }
+
+     window.onload = init();
+        window.addEventListener('keydown', keyInput, true);
+      </script>
+    </body>
+      </html> 
