@@ -1,98 +1,82 @@
+<!DOCTYPE html>
 <html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-	<title>Level 1</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="assets/css/bootstrap-theme.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/w3.css">
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <link href="assets/css/gamestyle.css" rel="stylesheet" />    <!-- Font style and stuff -->
-    <link rel="stylesheet" href="assets/color/default.css"> 
-    <link rel="stylesheet" href="assets/css/overlay.css"> 
-     <link rel="stylesheet" href="assets/css/image_opacity.css"> 
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link type="text/css" href="assets/css/lastpage.css" rel="stylesheet"  />
+	</head>
+	<body>
+		<div id="justtext">
+		To maintain your sanity in the time spent alone in the vault. You maintained a diary and recorded the occurences.
+		Go through the diary by flipping the pages or read the gist below.
+		</div>
+			 
+		<div id="book">
+			<canvas id="pageflip-canvas"></canvas>
+			<div id="pages">
+				<section><div><h2>DAY ONE<hr></h2><p id="one" align="left" >Missing my bed already. Long way ahead.	 </p></div></section>
+				<section><div><h2>DAY TWO<hr></h2><p id="two"align="left"> Just thinking about the condition of the world outside gives me chills  </p> </div></section>
+				<section><div><h2>DAY THREE<hr> </h2><p id="three"align="left">Third day. <br> Status: Alive<br> Hopefully the coming days do not change that  </p>	 </div></section>
+				<section><div><h2>DAY FOUR<hr></h2><p id="four"align="left"> Another day in the vault. Time seems to be getting slower every day now. </p></div></section>
+				<section><div><h2>DAY FIVE<hr></h2><p id="five"align="left"> l </p></div></section>
+				<section><div><h2>DAY SIX<hr></h2><p id="six"align="left">  </p></div></section>
+				<section><div><h2>DAY SEVEN<hr> </h2><p id="seven"align="left">  </p></div></section>
+				<section><div><h2>DAY EIGHT<hr></h2><p id="eight"align="left">  </p></div></section>
+				<section><div><h2>DAY NINE<hr></h2><p id="nine"align="left"align="left">  </p></div></section>
+				<section><div><h2>DAY TEN<hr></h2><p id="ten"align="left">  </p></div></section>
+				<section><div><h2>DAY ELEVEN<hr></h2><p id="eleven"align="left">  </p></div></section>
+				<section><div><h2>DAY TWELVE<hr></h2><p id="twelve"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTEEN<hr></h2><p id="thirteen"align="left">  </p></div></section>
+				<section><div><h2>DAY FOURTEEN<hr></h2><p id="fourteen"align="left">  </p></div></section>
+				<section><div><h2>DAY FIFTEEN<hr></h2><p id="fifteen"align="left">  </p></div></section>
+				<section><div><h2>DAY SIXTEEN<hr></h2><p id="sixteen"align="left">  </p></div></section>
+				<section><div><h2>DAY SEVENTEEN<hr></h2><p id="seventeen"align="left">  </p></div></section>
+				<section><div><h2>DAY EIGHTEEN<hr></h2><p id="eighteen"align="left">  </p></div></section>
+				<section><div><h2>DAY NINETEEN<hr></h2><p id="nineteen"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY<hr></h2><p id="twenty"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY ONE</h2><p id="21"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY TWO</h2><p id="22"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY THREE</h2><p id="23"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY FOUR</h2><p id="24"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY FIVE</h2><p id="25"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY SIX</h2><p id="26"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY SEVEN</h2><p id="27"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY EIGHT</h2><p id="28"align="left">  </p></div></section>
+				<section><div><h2>DAY TWENTY NINE</h2><p id="29"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY</h2><p id="30"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY ONE</h2><p id="31"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY TWO</h2><p id="32"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY THREE</h2><p id="33"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY FOUR</h2><p id="34"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY FIVE</h2><p id="35"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY SIX</h2><p id="36"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY SEVEN</h2><p id="37"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY EIGHT</h2><p id="38"align="left">  </p></div></section>
+				<section><div><h2>DAY THIRTY NINE</h2><p id="39"align="left">  </p></div></section>
+				<section><div><h2>DAY FORTY</h2><p   id="40"align="left"> hellloo </p></div></section>
+			</div>
+		</div>
+	 
+		<div class="exampleoverlay">
+			 
+			<h2>  <font color="white" > Resources in vault </font>   </h2> <!--php use karke username lena h yaha -->
+			 <font color="white" size="3px" face="Comic Sans MS"> <p> You managed to grab  
+			<span id="foo"> * </span>  Food   <span id="wat"> * </span>  Water and <span id="fue"> *  </span>  Fuel</p><br>
+			 <h2>  <font color="white" > Outcome </font>   </h2>
+			 
+			<h4>   Food ran out on Day <span id="nofood"> * </span>  <br>
+			<h4>   Last drops of water. Day <span id="nowater"> * </span> <br>
+			<h4>   and fuel on day  <span id="nofuel"> * </span>  
 
-</head>
-
-   
-<body onload="loadnewimg()">
-
-<script src ="assets/js/player.js"></script>
-<header>
  
-
-
-<div id="navigation" class="navbar navbar-inverse navbar-fixed-top default" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="gameintro.html">Sixty Seconds</a> <!-- game intro page -->
-    </div>
-
-	<div class="navigation">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="current"><a href="#">Teknack 2016</a></li>  <!-- main event page -->
-		<li><a href="#gameplay">How To</a></li>                <!-- how to page -->
-		<li><a href="#scoring">Event leaderBoard</a></li>       <!-- main event leader board page -->
-		
-      </ul></nav>
-    </div><!-- /.navbar-collapse -->
-	</div> </div> </div>
-
-
-</header>
-
-
- <section id ="game" >
- 	<div class="exampleoverlay"></div>
-  <div class="examplemodal" id = "temp" ><h1>Level Achievements</h1>
-
-<img style = "opacity:0.3" src="assets/img/oxygen.jpg" id="img1" width="50px" height="50px"/>
-<img style = "opacity:0.3" src="assets/img/oxygen.jpg" id="img2" width="50px" height="50px"/>
-<img style = "opacity:0.3" src="assets/img/oxygen.jpg" id="img3" width="50px" height="50px"/>
-    
-
-  </div>
-
-  <div class="maincontent">
-      <h1>   Resources in vault  </h1>
-
-
-  </div>
-
-
-</div>
- 
-
-<h2>Help Menu</h2><br>
-<p>Still not quite sure what you're supposed to do? </p><br>
-
-<div class="dropdown">
-  <button class="dropbtn">Help Section</button>
-  <div class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div>
-<section id="footer">
-
-</section>
-<script type="text/javascript">
-      function loadnewimg(){
-         alert("done");
-          document.getElementById("temp").innerHTML="<object type = 'type/html'  data='newimg.html'></object>"
-         
-        
-      }
-      
-  </script>
-</body>
-
-</html>
+			<h3>   You survived <span id="achieved"> * </span> days  </h3> <!-- no .of days_lived-->
+              
+			</div>
+			<div class="links">
+			 <h1><a href="#level_2" alt="next level">Next Level</a></h1> 
+			 <h1><a href="#level_2" alt="next level">Retry</a></h1>  
+			</div>
+		<script type="text/javascript" src="assets/js/calculations.js"></script>
+		<script type="text/javascript" src="assets/js/pageflip.js"></script>
+	
+	</body>
+<html>
