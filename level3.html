@@ -48,27 +48,33 @@ var resources =new Array();
 var resource_count=0;
 var rx =new Array();
 var ry =new Array();
-var oxy =new Image();    var wat=new Image();    var fue=new Image();    var foo=new Image();
-oxy.src ="assets/img/oxygen.png";    wat.src ="assets/img/water.png"; //Issue: Check extensions. Add all resources
-fue.src="assets/img/fuel.jpg";    foo.src="assets/img/foo.jpg";
-for(var i=0;i<8;i++)
-        {resources[i]= wat ;
-        resources[i].id='wat';
-          i++;
-         resources[i] = wat;
-         resources[i].id='wat';
-        }
-for(var i=8;i<=10;i++)
-{resources[i]=wat;
-resources[i].id="wat";}
-resources[11]=wat;
-resources[11].id="wat";
-var rx =new Array(); //array of x coordinates of resources
-        rx.push(260);rx.push(220);rx.push(20);rx.push(90);rx.push(140);rx.push(280);rx.push(20);rx.push(90);rx.push(140);rx.push(280);
-        var ry =new Array();
-        ry.push(100);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);ry.push(240);ry.push(280);ry.push(360);ry.push(140);ry.push(240);
+var oxy =new Image();    var wat=new Image();    var fue=new Image();    var foo=new Image(); var tor=new Image();
+oxy.src ="assets/img/oxy.jpg";    wat.src ="assets/img/water.png";  
+fue.src="assets/img/fuel.png";    foo.src="assets/img/foo.png";  tor.src="assets/img/tor.png";
+for (var i=0;i<5;i++) 		{resources[i]=wat; resources[i].id='wat';  } // 0 to 4 water
+for (var i=5;i<10; i++) 	{resources[i]=foo; resources[i].id='foo'; }// 5 to 9 food
+for (var i=10;i<14; i++) 	{resources[i]=fue; resources[i].id='fue'; }// 10 to 13 food
+							 resources[14]=oxy; resources[i].id='oxy'; 
+							 resources[15]=tor; resources[i].id='tor';
+ 
+ 
+var rx =new Array(); var ry =new Array();
+rx.push(28);rx.push(395);rx.push(507);rx.push(485);rx.push(748);
+ry.push(30);ry.push(335);ry.push(335);ry.push(425);ry.push(631);
+
+rx.push(187);rx.push(269);rx.push(832);rx.push(267);rx.push(1133);
+ry.push(22);ry.push(177);ry.push(80);ry.push(615);ry.push(488);
+
+rx.push(25);rx.push(708);rx.push(82);rx.push(1125);
+ry.push(426);ry.push(36);ry.push(620);ry.push(160);
+
+rx.push(656);ry.push(417);
+rx.push(710);ry.push(421);
+ 
         var have =new Array();    //Created this
         resource_count=resources.length;
+		
+		
 function inVault() {    //Cupboard in room 1, Section 1
 if (x>74 && x<151)
 {
@@ -78,13 +84,7 @@ if(y>209 && y<323 )
 else return 0;
 }
 
-function getsection(x,y){   //Returns Section number
-if (x <=612 )
-     section =1;
-else  if (x > 612  )
-    section =2;
-return section;
-}
+ 
 for(var i=0;i<resources.length;i++)                         // Resource Intersection Part 1
 {
 aBoxLeft=x-8;
@@ -121,6 +121,16 @@ function remove(i){
             resource_count --;
 } //End Remove
 
+function getsection(x,y){   //Returns Section number
+if (x <=612 )
+     section =1;
+else  if (x > 612  )
+    section =2;
+return section;
+}
+
+ 
+
 function keyInput(evt) {
 
  
@@ -128,16 +138,8 @@ if (ini==0)                                            //Start Timer on first mo
 {//document.getElementById("clock").value = 0;
 startCount();}
 ini=1;
-
-
-
-/*
-38: Up
-40: Down
-37: Left
-39: Right
-*/
-//i  added this to check collision from a object we just to push x,y,its width and height into materials;
+ 
+ 
 var sect=getsection(x,y);
 if (sect==1)                                                                                 //Section 1 of 4
 {
@@ -935,15 +937,19 @@ function init() {
             //ctx.clearRect(0,0,1200,700);
             if (inVault() && have.length>=1)   //Player present in the vault and he has a resource
             {
-            if (have[0]=='water')
-            {ctx.drawImage(water,l,350,15,15);
-            l+=20;
-            have.splice(water,1);}         //Remove from have array
+            if (have[0]=='wat')
+            {total_water+=1;
+            have.splice(water,1);}   
+            
               if (have[0]=='oxy')
-            {ctx.drawImage(oxy,l,350,15,15);
-            l+=20;
+            {total_oxy +=1;
             have.splice(oxy,1);}
-            ctx.clearRect(405,350,25,75);
+             
+             if have[0]=='foo'
+             {have.splice(foo,1); total_food+=1;   }
+             
+             if have[0]=='fue'
+             {have.splice(fue,1); total_fuel+=1;   }
             }
            
         
@@ -951,9 +957,7 @@ function init() {
               { 
             ctx.drawImage(resources[i],rx[i],ry[i],30,30);
           }
-            if (inVault() && resource_count==0)
-            {//document.getElementById("txt").value = "Your score:"+c;
-            stopCount();}
+             
            requestAnimationFrame(draw);
           }
           draw();
