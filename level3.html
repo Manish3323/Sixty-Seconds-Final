@@ -20,8 +20,8 @@ var c = 0;        //for timer
 var t;            //for timer
 var timer_is_on = 0;
 var section =null;
-var x =150;
-var y = 150;
+var x =950;
+var y = 350;
 var bBoxRight;
 var bBoxLeft;
 var bBoxBottom;
@@ -39,8 +39,8 @@ var wallx;
 var wally;
 var newx;
 var newy;
-var bw=39;                    //Half of buster's height and width
-var bh=39;
+var dx=12;                    //Half of buster's height and width
+var bh=12;
 var have =new Array();
 var count;  var l=490; var ini =0;    var collided=0;    var busterini=0;
 var objects = new Array();
@@ -221,34 +221,34 @@ case 40:{               flag=0;
 case 37:{
                         flag = 0; 
                          //Reset flag
-                        if(y>10 && y<318)
+                        if(y>10 && y<692)
                         {
-                        if (x-bw<8 && x>8)
-                        {x=8+bw; flag=1; }                                //Section 1 Left Wall
+                        if (x-dx<8 && x>8)
+                        {x=8+dx; flag=1; }                                //Section 1 Left Wall
                         }
                        
                         if(y>140 && y<384)
                         {
-                        if (x-bw<250 && x>250)
-                        {x=250+bw; flag=1; }                            //Section 1  Dining
+                        if (x-dx<250 && x>250)
+                        {x=250+dx; flag=1; }                            //Section 1  Dining
                         }
                        
                         if(y>11 && y<95)
                         {
-                        if (x-bw<360 && x>360)
-                        {x=360+bw; flag=1; }                            //Section 1  Bed
+                        if (x-dx<360 && x>360)
+                        {x=360+dx; flag=1; }                            //Section 1  Bed
                         }
                        
                         if(y>85 && y<148)
                         {
-                        if (x-bw<252 && x>252)
-                        {x=252+bw; flag=1; }                            //Below bed
+                        if (x-dx<252 && x>252)
+                        {x=252+dx; flag=1; }                            //Below bed
                         }
                        
                         if(y>16 && y<148)
                         {
-                        if (x-bw<522 && x>522)
-                        {x=522+bw; flag=1; }                            //PC Room
+                        if (x-dx<522 && x>522)
+                        {x=522+dx; flag=1; }                            //PC Room
                         }
                 
 
@@ -264,32 +264,32 @@ case 39:     {
                 //Reset flag
                 if(y>153 && y<318)
                 {
-                if (x+bw<194 && x>194)
-                {x=194-bw; flag=1; }                            // Section 1 Room 1
+                if (x+dx>194 && x<194)
+                {x=194-dx; flag=1; }                            // Section 1 Room 1
                 }
                
                 if(y>10 && y<153)
                 {
-                if (x+bw<243 && x>243)
-                {x=243-bw; flag=1; }                            // Section 1 Room 1 Top
+                if (x+dx>243 && x<243)
+                {x=243-dx; flag=1; }                            // Section 1 Room 1 Top
                 }
                
                 if(y>10 && y<153)
                 {
-                if (x+bw<507 && x>507)
-                {x=507-bw; flag=1; }                            // Section 1 Bedroom
+                if (x+dx>507 && x<507)
+                {x=507-dx; flag=1; }                            // Section 1 Bedroom
                 }
                
                 if(y>271 && y<312)
                 {
-                if (x+bw<534 && x>534)
-                {x=534-bw; flag=1; }                            // Section 1 D Table
+                if (x+dx>534 && x<534)
+                {x=534-dx; flag=1; }                            // Section 1 D Table
                 }
                
 
                
               
-                if (flag == 0 && x + 22 <= WIDTH) {
+                if (flag == 0 ) {
                 x += dx;
                 buster.drawAnimated(x, y, [7,8,9,10,11,12],ctx);
                 }
@@ -419,56 +419,56 @@ case 37:{
                
                         if(y>10 && y<81)
                         {
-                        if (x-bw<675 && x>675)
-                        {x=675+bw; flag=1; }                                //PC
+                        if (x-dx<675 && x>675)
+                        {x=675+dx; flag=1; }                                //PC
                         }
                        
                         if(y>10 && y<163)
                         {
-                        if (x-bw<785 && x>785)
-                        {x=785+bw; flag=1; }                                //Wall
+                        if (x-dx<785 && x>785)
+                        {x=785+dx; flag=1; }                                //Wall
                         }
                        
                         if(y>10 && y<60)
                         {
-                        if (x-bw<946 && x>946)
-                        {x=946+bw; flag=1; }                                //tub
+                        if (x-dx<946 && x>946)
+                        {x=946+dx; flag=1; }                                //tub
                         }
                        
                         if(y>10 && y<250)
                         {
-                        if (x-bw<982 && x>982)
-                        {x=982+bw; flag=1; }                                //wall long
+                        if (x-dx<982 && x>982)
+                        {x=982+dx; flag=1; }                                //wall long
                         }
                        
                         if(y>41 && y<131)
                         {
-                        if (x-bw<1161 && x>1161)
-                        {x=1161+bw; flag=1; }                                //bed
+                        if (x-dx<1161 && x>1161)
+                        {x=1161+dx; flag=1; }                                //bed
                         }
                        
                         if(y>300 && y<322)
                         {
-                        if (x-bw<984 && x>984)
-                        {x=984+bw; flag=1; }                                //wall
+                        if (x-dx<984 && x>984)
+                        {x=984+dx; flag=1; }                                //wall
                         }
                        
                         if(y>295 && y<321)
                         {
-                        if (x-bw<729 && x>729)
-                        {x=729+bw; flag=1; }                                //chair
+                        if (x-dx<729 && x>729)
+                        {x=729+dx; flag=1; }                                //chair
                         }
                        
                         if(y>267 && y<294)
                         {
-                        if (x-bw<671 && x>671)
-                        {x=671+bw; flag=1; }                                //chair
+                        if (x-dx<671 && x>671)
+                        {x=671+dx; flag=1; }                                //chair
                         }
                        
                         if(y>153 && y<166)
                         {
-                        if (x-bw<654&& x>654)
-                        {x=654+bw; flag=1; }                                //wall
+                        if (x-dx<654&& x>654)
+                        {x=654+dx; flag=1; }                                //wall
                         }
 
                 if (flag == 0 ) {
@@ -481,38 +481,38 @@ case 39:{
                 flag = 0; //Reset flag
                 if(y>10 && y<150)
                 {
-                if (x+bw<770 && x>770)
-                {x=770-bw; flag=1; }                            // wall
+                if (x+dx<770 && x>770)
+                {x=770-dx; flag=1; }                            // wall
                 }
                
                 if(y>11 && y<249)
                 {
-                if (x+bw<965 && x>965)
-                {x=965-bw; flag=1; }                            // wall
+                if (x+dx<965 && x>965)
+                {x=965-dx; flag=1; }                            // wall
                 }
                
                 if(y>300 && y<321)
                 {
-                if (x+bw<965 && x>965)
-                {x=965-bw; flag=1; }                            // wall
+                if (x+dx<965 && x>965)
+                {x=965-dx; flag=1; }                            // wall
                 }
                
                 if(y>11 && y<60)
                 {
-                if (x+bw<805 && x>805)
-                {x=805-bw; flag=1; }                            //tub
+                if (x+dx<805 && x>805)
+                {x=805-dx; flag=1; }                            //tub
                 }
                
                 if(y>43 && y<130)
                 {
-                if (x+bw<1021 && x>1021)
-                {x=1021-bw; flag=1; }                            //bed
+                if (x+dx<1021 && x>1021)
+                {x=1021-dx; flag=1; }                            //bed
                 }
                
-                if(y>11 && y<322)
+                if(y>11 && y<700)
                 {
-                if (x+bw<1183 && x>1183)
-                {x=1183-bw; flag=1; }                            //mainwall
+                if (x+dx<1183 && x>1183)
+                {x=1183-dx; flag=1; }                            //mainwall
                 }
 
                
@@ -525,15 +525,13 @@ case 39:{
 
 }      //Switch 2
 }        // Section 2
-if (sect==3)                                                                                 //Section 1 of 4
-{
+if (sect==1)                                                                                 //Section 1 of 4
 switch(evt.keyCode)
 {
-case 38:{                flag=0;                                    //Reset flag
+case 38:{               flag=0;                                    //Reset flag
                         if(x>17  && x<113)
                         {
-                        if (y -bh < 409 && y>=409 )
-                        {  y=409+bh;
+                       {  y=409+bh;
                         flag=1;     }
                         }
                        
@@ -621,64 +619,64 @@ case 37: {
                         flag = 0; //Reset flag
                
                         if(y>310 && y<692) {
-                        if(x-bw <17 && x>=17 )
+                        if(x-dx <17 && x>=17 )
                         {
                         flag=1;
-                        x=17+bw;}
+                        x=29;}
                         }
                        
-                        if(y>327 && y<397) {
-                        if(x-bw <258 && x>=258 )
+                        if(y>327 && y<397) {                                      /////////////////////
+                        if(x-dx <258 && x>=258 )
                         {
                         flag=1;
-                        x=258+bw;}
+                        x=258+dx;}
                         }
                        
                         if(y>505 && y<616) {
-                        if(x-bw <237 && x>=237 )
+                        if(x-dx <237 && x>=237 )
                         {
                         flag=1;
-                        x=237+bw;}
+                        x=237+dx;}
                         }
                        
                         if(y>411 && y<543) {
-                        if(x-bw <474 && x>=474)
+                        if(x-dx <474 && x>=474)
                         {
                         flag=1;
-                        x= 474+bw;}
+                        x= 474+dx;}
                         }
                         if (flag == 0) {
                         x -= dx;
                         buster.drawAnimated(x, y, [13,14,15,16,17,18],ctx);
                         }
          } break;            //Left   
-case 39:{
+case 39:{alert("3 me h tu ");
              
                         flag = 0; //Reset flag
                         if (y>314 && y < 348) {
-                        if (x + bw > 194 && x <= 194) {
-                        x = 194-bw;
+                        if (x + dx > 194 && x <= 194) {
+                        x = 194-dx;
                         flag = 1;
                         }
                         }
 
                         if (y>399 && y < 543) {
-                        if (x + bw > 375 && x <= 375) {
-                        x = 375-bw;
+                        if (x + dx > 375 && x <= 375) {
+                        x = 375-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>642 && y <686) {
-                        if (x + bw > 389 && x <= 389) {
-                        x = 389-bw;
+                        if (x + dx > 389 && x <= 389) {
+                        x = 389-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>316 && y <400) {
-                        if (x + bw > 479 && x <= 479) {
-                        x = 479-bw;
+                        if (x + dx > 190 && x <= 190) {
+                        x = 190-dx;
                         flag = 1;
                         }
                         }
@@ -692,7 +690,7 @@ case 39:{
         } break; //39
 } //switch
 }//section 30
-if (sect==4)
+if (sect==2)
 {
 switch(evt.keyCode)
 {
@@ -797,45 +795,45 @@ case 37: {
                         flag = 0; //Reset flag
                
                         if(y>410 && y<586) {
-                        if(x-bw <612 && x>=612 )
+                        if(x-dx <612 && x>=612 )
                         {
                         flag=1;
-                        x=612+bw;}
+                        x=612+dx;}
                         }
                        
                         if(y>315 && y<400) {
-                        if(x-bw <732 && x>=732 )
+                        if(x-dx <732 && x>=732 )
                         {
                         flag=1;
-                        x=732+bw;}
+                        x=732+dx;}
                         }
                        
                         if(y>577 && y<688) {
-                        if(x-bw <735 && x>=735 )
+                        if(x-dx <735 && x>=735 )
                         {
                         flag=1;
-                        x=735+bw;}
+                        x=735+dx;}
                         }
                        
                         if(y>398 && y<554) {
-                        if(x-bw <867 && x>=867)
+                        if(x-dx <867 && x>=867)
                         {
                         flag=1;
-                        x= 867+bw;}
+                        x= 867+dx;}
                         }
                        
                         if(y>357&& y<398) {
-                        if(x-bw <982 && x>=982)
+                        if(x-dx <982 && x>=982)
                         {
                         flag=1;
-                        x= 982+bw;}
+                        x= 982+dx;}
                         }
                        
                         if(y>435&& y<696) {
-                        if(x-bw <982 && x>=982)
+                        if(x-dx <982 && x>=982)
                         {
                         flag=1;
-                        x= 982+bw;}
+                        x= 982+dx;}
                         }
                        
                        
@@ -848,50 +846,50 @@ case 39:{
              
                         flag = 0; //Reset flag
                         if (y>406 && y < 643) {
-                        if (x + bw > 637 && x <= 637) {
-                        x = 637-bw;
+                        if (x + dx > 637 && x <= 637) {
+                        x = 637-dx;
                         flag = 1;
                         }
                         }
 
                         if (y>404 && y < 554) {
-                        if (x + bw > 851 && x <= 851) {
-                        x = 851-bw;
+                        if (x + dx > 851 && x <= 851) {
+                        x = 851-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>614 && y <695) {
-                        if (x + bw > 794 && x <= 794) {
-                        x = 794-bw;
+                        if (x + dx > 794 && x <= 794) {
+                        x = 794-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>434 && y <688) {
-                        if (x + bw > 963 && x <= 963) {
-                        x = 963-bw;
+                        if (x + dx > 963 && x <= 963) {
+                        x = 963-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>336 && y <691) {
-                        if (x + bw > 1183 && x <= 1183) {
-                        x = 1183-bw;
+                        if (x + dx > 1183 && x <= 1183) {
+                        x = 1183-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>563 && y <659) {
-                        if (x + bw > 1019 && x <= 1019) {
-                        x = 1019-bw;
+                        if (x + dx > 1019 && x <= 1019) {
+                        x = 1019-dx;
                         flag = 1;
                         }
                         }
                        
                         if (y>317 && y <399) {
-                        if (x + bw > 962 && x <= 962) {
-                        x = 962-bw;
+                        if (x + dx > 962 && x <= 962) {
+                        x = 962-dx;
                         flag = 1;
                         }
                         }
